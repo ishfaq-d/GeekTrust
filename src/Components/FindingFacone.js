@@ -1,8 +1,8 @@
 import axios from "axios";
-import React,{useEffect, useState} from "react";
+import React,{useEffect, useState,createContext} from "react";
 import PlanetSelector from "./PlanetSelector";
 
-
+export const MyContext = createContext(null)
 
 function FindingFalcone(){
 
@@ -30,13 +30,13 @@ function FindingFalcone(){
 
 
     return (
-    <>
+    <MyContext.Provider value={{vehicles:vehicles, setVehicles:setVehicles, planets:planets, setPlanets:setPlanets,count:count}}>
         <h1>Finding Falcone!</h1>
         <h2> Select planets you want to serach in:</h2>
         <section >
-                <PlanetSelector style={{display: 'inline-block'}} planets={planets} vehicles={vehicles} setVehicles={setVehicles} count={count}/>
+                <PlanetSelector style={{display: 'inline-block'}} count={count}/>
         </section>
-    </>
+    </MyContext.Provider>
     )
 }
 
